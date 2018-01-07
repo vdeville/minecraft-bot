@@ -59,7 +59,7 @@ def tellraw_minecraft(string, color=None):
 
 def stop_server():
     for t in range(15, 0, -5):
-        say_minecraft('Stopping in %s ...' % str(t))
+        tellraw_minecraft('Stopping in %s ...' % str(t), 'red')
         time.sleep(5)
     run_minecraft_cmd('stop')
 
@@ -71,11 +71,11 @@ def start_server():
 
 
 def restart_server():
-    say_minecraft("Restarting...")
+    tellraw_minecraft("Restarting...", 'gold')
     stop_server()
     start_server()
     time.sleep(30)
-    say_minecraft("Server restarted")
+    tellraw_minecraft("Server restarted", 'blue')
 
 
 def get_srv_param(param):

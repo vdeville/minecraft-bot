@@ -10,9 +10,11 @@ def command_info(command_dict):
     if len(command_dict['args']) > 1:
         for element in command_dict['args'][1:]:
             if mcutils.get_map_info(element):
-                mcutils.say_minecraft('Map %s : %s' % (element, mcutils.get_map_info(element)))
+                mcutils.tellraw_minecraft('Map %s : %s' % (element, mcutils.get_map_info(element)),
+                                          ('green' if element == mcutils.get_srv_param('level-name') else 'yellow')
+                                          )
             else:
-                mcutils.say_minecraft("la Map %s n'existe pas" % element)
+                mcutils.tellraw_minecraft("la Map %s n'existe pas" % element, 'red')
     else:
         mcutils.tellraw_minecraft('""')
         mcutils.tellraw_minecraft('Voici la liste des maps:', 'dark_aqua')
