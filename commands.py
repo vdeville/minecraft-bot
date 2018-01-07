@@ -14,10 +14,24 @@ def command_info(command_dict):
             else:
                 mcutils.say_minecraft("la Map %s n'existe pas" % element)
     else:
-        mcutils.say_minecraft('[Map %s chargée] Voici la liste des maps :' % mcutils.get_srv_param('level-name'))
+        mcutils.tellraw_minecraft('""')
+        mcutils.tellraw_minecraft('Voici la liste des maps:', 'dark_aqua')
+        current_map = mcutils.get_srv_param('level-name')
         for name, desc in mcutils.get_map_info().items():
-            mcutils.say_minecraft("Map %s: %s" % (name, desc))
-        mcutils.say_minecraft('Utilisez !setinfo pour modifier les informations de la map actuellement chargée.')
+            if name == current_map:
+                prefix = "➜"
+                current = True
+            else:
+                prefix = "●"
+                current = False
+            mcutils.tellraw_minecraft('%s %s: %s' % (prefix, name, desc), ('green' if current else 'yellow'))
+        mcutils.tellraw_minecraft('""')
+        mcutils.tellraw_minecraft(
+            '{"text":"Utilisez !setinfo pour modifier les informations de la map actuellement chargée.",'
+            '"italic":true,"color":"gray",'
+            '"clickEvent":{"action":"suggest_command","value":"!setinfos"},'
+            '"hoverEvent":{"action":"show_text","value":"!setinfos"}}'
+        )
     return
 
 

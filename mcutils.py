@@ -42,11 +42,19 @@ def run_cmd(cmd):
 
 
 def run_minecraft_cmd(string):
+    string = string.replace('"', '\\"')
     run_cmd('screen -p 0 -S %s -X stuff "%s $(printf \\\r)"' % (conf.SCREEN_NAME, string))
 
 
 def say_minecraft(string):
     run_minecraft_cmd("say %s" % string)
+
+
+def tellraw_minecraft(string, color=None):
+    if not color:
+        run_minecraft_cmd('tellraw @a %s' % string)
+    else:
+        run_minecraft_cmd('tellraw @a {"text":"%s","color":"%s"}' % (string, color))
 
 
 def stop_server():
