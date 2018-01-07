@@ -1,5 +1,5 @@
 {
-    "A": "Map A",
-    "B": "Map B",
-    "world": "ma super map"
+    "world": "test default",
+    "2": "Map generee par un bug, map vierge",
+    "world2": "Map 2 de test"
 }

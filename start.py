@@ -25,6 +25,8 @@ def read_log(current_line):
             cmd.command_info(command_dict)
         if command == 'setinfo':
             cmd.command_set_info(command_dict)
+        if command == 'swap':
+            cmd.command_swap(command_dict)
         elif command == 'stop':
             mcutils.stop_server()
         elif command == 'stopall':

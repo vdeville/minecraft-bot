@@ -65,15 +65,20 @@ def command_update(command_dict):
 def command_swap(command_dict):
     if len(command_dict['args']) > 1:
         if command_dict['args'][1] == mcutils.get_srv_param('level-name'):
-            mcutils.say_minecraft('La map %s est déja chargée.' % command_dict['args'][1])
+            mcutils.tellraw_minecraft('La map %s est déja chargée.' % command_dict['args'][1], 'green')
         else:
-            mcutils.say_minecraft('Changement de map programmé : Passage de la map %s vers la map %s' % (
-                mcutils.get_srv_param('level-name'), command_dict['args'][1]))
-            mcutils.stop_server()
-            mcutils.set_srv_param('level-name', command_dict['args'][1])
-            mcutils.start_server()
+            if not mcutils.get_map_info(command_dict['args'][1]):
+                mcutils.tellraw_minecraft("La map demandée n'existe pas ou n'est pas autorisée dans le fichier", 'red')
+            else:
+                mcutils.tellraw_minecraft('Changement de map programmé:', 'gold')
+                mcutils.tellraw_minecraft('Passage de %s ➜ %s' % (
+                            mcutils.get_srv_param('level-name'), command_dict['args'][1]
+                ), 'green')
+                mcutils.stop_server()
+                mcutils.set_srv_param('level-name', command_dict['args'][1])
+                mcutils.start_server()
     else:
-        mcutils.say_minecraft('Usage: ' + conf.SYMBOL_COMMAND + 'swap <Map_ID>')
+        mcutils.tellraw_minecraft('Usage: %s%s <Map_ID>' % (conf.SYMBOL_COMMAND, command_dict['command']), 'gray')
     return
 
 

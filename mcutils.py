@@ -95,10 +95,8 @@ def set_srv_param(param, value):
         for line in new_server_properties:
             i += 1
             if param in line:
-                with open('server.properties', 'w') as srvFile:
+                with open(conf.MINECRAFT_SERVER['serverProperties'], 'w') as srvFile:
                     new_line = ("%s=%s" % (param, value))
-                    new_server_properties[i - 1] = new_line + '\r'
+                    new_server_properties[i - 1] = new_line + '\n'
                     srvFile.writelines(new_server_properties)
                     return True
-            else:
-                return False
