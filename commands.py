@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import sys
 import time
 import mcutils
 import config as conf
@@ -36,6 +37,10 @@ def command_info(command_dict):
         )
     return
 
+
+def stopall(command_dict):
+    mcutils.stop_server()
+    exit(0)
 
 def command_update(command_dict):
     mcutils.say_minecraft("test")

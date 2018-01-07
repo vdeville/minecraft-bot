@@ -6,7 +6,6 @@ import commands as cmd
 import mcutils
 import subprocess
 
-
 def parse_command(string):
     string = string.replace('\n', '')
     split = string.split(conf.SYMBOL_COMMAND)
@@ -25,8 +24,13 @@ def read_log(current_line):
             cmd.command_info(command_dict)
         elif command == 'stop':
             mcutils.stop_server()
+        elif command == 'stopall':
+            cmd.stopall(command_dict)
         elif command == 'restart':
             mcutils.restart_server()
+
+
+# symbols ✔︎ ✖︎ 𝟵 ➜
 
 
 if __name__ == '__main__':
@@ -38,9 +42,10 @@ if __name__ == '__main__':
         while True:
             line = f.stdout.readline().decode('utf-8')
             read_log(line)
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, SystemExit):
+        print("Python script was stop")
         mcutils.say_minecraft("Python script was stop")
-        exit()
+        exit(0)
     except:
         mcutils.say_minecraft("Python script as crash")
-        exit()
+        exit(1)
