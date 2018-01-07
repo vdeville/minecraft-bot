@@ -40,7 +40,7 @@ def read_log(current_line):
 
 if __name__ == '__main__':
     try:
-        #mcutils.start_server()
+        mcutils.start_server()
         mcutils.say_minecraft("Python script was started")
         f = subprocess.Popen(['tail', '-F', '-n', '0', conf.MINECRAFT_SERVER['latestLog']], stdout=subprocess.PIPE,
                              stderr=subprocess.PIPE)
