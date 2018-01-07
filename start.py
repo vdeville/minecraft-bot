@@ -23,6 +23,8 @@ def read_log(current_line):
 
         if command == 'info':
             cmd.command_info(command_dict)
+        if command == 'setinfo':
+            cmd.command_set_info(command_dict)
         elif command == 'stop':
             mcutils.stop_server()
         elif command == 'stopall':
@@ -36,7 +38,7 @@ def read_log(current_line):
 
 if __name__ == '__main__':
     try:
-        mcutils.start_server()
+        #mcutils.start_server()
         mcutils.say_minecraft("Python script was started")
         f = subprocess.Popen(['tail', '-F', '-n', '0', conf.MINECRAFT_SERVER['latestLog']], stdout=subprocess.PIPE,
                              stderr=subprocess.PIPE)

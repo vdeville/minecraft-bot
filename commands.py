@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import sys
 import time
 import mcutils
 import config as conf
@@ -32,8 +31,8 @@ def command_info(command_dict):
         mcutils.tellraw_minecraft(
             '{"text":"Utilisez !setinfo pour modifier les informations de la map actuellement chargée.",'
             '"italic":true,"color":"gray",'
-            '"clickEvent":{"action":"suggest_command","value":"!setinfos"},'
-            '"hoverEvent":{"action":"show_text","value":"!setinfos"}}'
+            '"clickEvent":{"action":"suggest_command","value":"!setinfo "},'
+            '"hoverEvent":{"action":"show_text","value":"!setinfo"}}'
         )
     return
 
@@ -41,6 +40,7 @@ def command_info(command_dict):
 def stopall(command_dict):
     mcutils.stop_server()
     exit(0)
+
 
 def command_update(command_dict):
     mcutils.say_minecraft("test")
@@ -78,10 +78,12 @@ def command_swap(command_dict):
 
 
 def command_set_info(command_dict):
-    if len(command_dict) > 1:
+    if len(command_dict['args']) > 1:
         str = ' '.join(command_dict['args'][1:])
-        print(str)
         mcutils.set_map_info(str)
+        mcutils.tellraw_minecraft('✔ La description de la map %s à bien été mise à jour'
+                                  % mcutils.get_srv_param('level-name'), 'green'
+                                  )
     else:
-        mcutils.say_minecraft('Usage: ' + conf.SYMBOL_COMMAND + 'Setinfo <Description>')
+        mcutils.tellraw_minecraft('Usage: %s%s <Description>' % (conf.SYMBOL_COMMAND, command_dict['command']), 'gray')
     return

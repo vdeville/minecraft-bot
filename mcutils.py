@@ -22,10 +22,12 @@ def set_map_info(str):
     with open(conf.MAPINFO_PATH, 'r') as MapInfo:
         json_copy = json.loads(MapInfo.read())
         json_copy[get_srv_param('level-name')] = str
+        MapInfo.close()
+
     with open(conf.MAPINFO_PATH, 'w') as MapInfo:
         json_dump = json.dumps(json_copy, indent=4)
         MapInfo.writelines(json_dump)
-    return
+        MapInfo.close()
 
 
 def update_map(map_ID):
