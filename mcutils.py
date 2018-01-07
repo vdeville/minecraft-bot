@@ -30,11 +30,6 @@ def set_map_info(str):
         MapInfo.close()
 
 
-def update_map(map_ID):
-    # TODO Map update algorithm
-    return
-
-
 def run_cmd(cmd):
     try:
         return subprocess.check_output(cmd, shell=True, cwd=conf.SERVER_DIR)
