@@ -6,6 +6,7 @@ import commands as cmd
 import mcutils
 import subprocess
 
+
 def parse_command(string):
     string = string.replace('\n', '')
     split = string.split(conf.SYMBOL_COMMAND)
@@ -16,9 +17,9 @@ def parse_command(string):
 
 def read_log(current_line):
     if '> ' + conf.SYMBOL_COMMAND in line:
-        print("<LINE>: " + line)
         command_dict = parse_command(current_line)
         command = command_dict['command']
+        print("<COMMAND>: " + str(command_dict))
 
         if command == 'info':
             cmd.command_info(command_dict)

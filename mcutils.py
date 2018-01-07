@@ -74,7 +74,7 @@ def restart_server():
     tellraw_minecraft("Restarting...", 'gold')
     stop_server()
     start_server()
-    time.sleep(30)
+    time.sleep(20)
     tellraw_minecraft("Server restarted", 'blue')
 
 
