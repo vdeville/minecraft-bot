@@ -2,7 +2,8 @@
 
 Minecraft chat bot written in python that parse latest logs from server and execute action called by user in game.
 
-![](img/example.png)
+![](img/example-1.png)
+![](img/example-2.png)
 
 ### Requirements
 - UNIX system
