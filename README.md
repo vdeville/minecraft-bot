@@ -15,7 +15,7 @@ Minecraft chat bot written in python that parse latest logs from server and exec
 Launch `start.py` : `python start.py`
 You can launch this script in a screen to detach and re-attach when youl'd like
 
-By default the script launch minecraft server when it's start
+This script start screen with minecraft server by default, to disable this features and do not launch minecraft server when script boot up, pass `START_SERVER_AT_BOOT` to `False` in `config.py`
 
 ### Base commands
 | Command | Argument | Action |
