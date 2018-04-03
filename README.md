@@ -8,6 +8,7 @@ Minecraft chat bot written in python that parse latest logs from server and exec
 ### Requirements
 - UNIX system
 - Programm: `python3`, `tail`, `screen`
+- `pip install -U -r requirements.txt`
 
 ### How to run
 

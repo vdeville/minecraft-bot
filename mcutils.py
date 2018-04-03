@@ -5,6 +5,7 @@ import config as conf
 import subprocess
 import json
 import time
+from minecraftTellrawGenerator import MinecraftTellRawGenerator as mctellraw
 
 
 def get_map_info(map=None):
@@ -47,16 +48,13 @@ def say_minecraft(string):
     run_minecraft_cmd("say %s" % string)
 
 
-def tellraw_minecraft(string, color=None):
-    if not color:
-        run_minecraft_cmd('tellraw @a %s' % string)
-    else:
-        run_minecraft_cmd('tellraw @a {"text":"%s","color":"%s"}' % (string, color))
+def tellraw_minecraft(string):
+    run_minecraft_cmd('tellraw @a %s' % string)
 
 
 def stop_server():
     for t in range(15, 0, -5):
-        tellraw_minecraft('Stopping in %s ...' % str(t), 'red')
+        tellraw_minecraft(mctellraw(text='Stopping in %s ...' % str(t), color='red'))
         time.sleep(5)
     run_minecraft_cmd('stop')
 
@@ -68,11 +66,11 @@ def start_server():
 
 
 def restart_server():
-    tellraw_minecraft("Restarting...", 'gold')
+    tellraw_minecraft(mctellraw(text='Restarting...', color='gold'))
     stop_server()
     start_server()
     time.sleep(20)
-    tellraw_minecraft("Server restarted", 'blue')
+    tellraw_minecraft(mctellraw(text='Server restarted', color='blue'))
 
 
 def get_srv_param(param):
