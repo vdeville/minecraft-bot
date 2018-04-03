@@ -23,6 +23,7 @@ By default the script launch minecraft server when it's start
 | info || Retrieve list of map and their descriptions |
 | setinfo | (description) | Set description of current map |
 | swap | (map_id) | Permet de changer de map |
+| setsrvparam | (key, value) | Permet de changer une config du server.properties |
 | stop || Stop mc server |
 | restart || Restart mc server |
 | stopall || Stop mc and python script |
