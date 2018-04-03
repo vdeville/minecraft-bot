@@ -31,7 +31,7 @@ def read_log(current_line):
         elif command == 'stop':
             mcutils.stop_server()
         elif command == 'stopall':
-            cmd.stopall(command_dict)
+            cmd.stopall()
         elif command == 'restart':
             mcutils.restart_server()
 

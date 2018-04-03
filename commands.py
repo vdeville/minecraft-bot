@@ -41,7 +41,7 @@ def command_info(command_dict):
     return
 
 
-def stopall(command_dict):
+def stopall():
     mcutils.stop_server()
     exit(0)
 
