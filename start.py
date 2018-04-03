@@ -6,7 +6,6 @@ import commands as cmd
 import mcutils
 import subprocess
 
-
 def parse_command(string):
     string = string.replace('\n', '')
     split = string.split(conf.SYMBOL_COMMAND)
@@ -25,6 +24,8 @@ def read_log(current_line):
             cmd.command_info(command_dict)
         if command == 'setinfo':
             cmd.command_set_info(command_dict)
+        elif command == 'setsrvparam':
+            cmd.command_set_srv_param(command_dict)
         if command == 'swap':
             cmd.command_swap(command_dict)
         elif command == 'stop':

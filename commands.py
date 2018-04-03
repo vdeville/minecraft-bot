@@ -49,7 +49,8 @@ def stopall(command_dict):
 def command_swap(command_dict):
     if len(command_dict['args']) > 1:
         if command_dict['args'][1] == mcutils.get_srv_param('level-name'):
-            mcutils.tellraw_minecraft(mctellraw(text='La map %s est déja chargée.' % command_dict['args'][1], color='green'))
+            mcutils.tellraw_minecraft(
+                mctellraw(text='La map %s est déja chargée.' % command_dict['args'][1], color='green'))
         else:
             if not mcutils.get_map_info(command_dict['args'][1]):
                 mcutils.tellraw_minecraft(
@@ -58,8 +59,9 @@ def command_swap(command_dict):
             else:
                 mcutils.tellraw_minecraft(mctellraw(text='Changement de map programmé:', color='gold'))
                 mcutils.tellraw_minecraft(
-                    mctellraw(text='Passage de %s ➜ %s' % (mcutils.get_srv_param('level-name'), command_dict['args'][1]),
-                              color='green')
+                    mctellraw(
+                        text='Passage de %s ➜ %s' % (mcutils.get_srv_param('level-name'), command_dict['args'][1]),
+                        color='green')
                 )
                 mcutils.stop_server()
                 mcutils.set_srv_param('level-name', command_dict['args'][1])
@@ -82,5 +84,18 @@ def command_set_info(command_dict):
     else:
         mcutils.tellraw_minecraft(
             mctellraw(text='Usage: %s%s <Description>' % (conf.SYMBOL_COMMAND, command_dict['command']), color='gray')
+        )
+    return
+
+
+def command_set_srv_param(command_dict):
+    value = ' '.join(command_dict['args'][2:])
+    if mcutils.set_srv_param(command_dict['args'][1], value):
+        mcutils.tellraw_minecraft(
+            mctellraw(text='✔ Le parametre %s à bien été mis à jour' % command_dict['args'][1], color='green')
+        )
+    else:
+        mcutils.tellraw_minecraft(
+            mctellraw(text="✖ Le parametre (%s) n'existe pas" % command_dict['args'][1], color='red')
         )
     return
