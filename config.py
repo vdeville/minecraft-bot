@@ -1,14 +1,15 @@
-BASE_PATH = "/Users/valentin/dev/voxel-pyhton"
+BASE_PATH = "/Users/valentin/Downloads/minecraft"
 MAPINFO_PATH = BASE_PATH + '/MapInfo.json'
-SERVER_DIR = BASE_PATH + "/Minecraft/"
+SERVER_DIR = BASE_PATH + "/mc/"
 
 MINECRAFT_SERVER = {
     'serverProperties': SERVER_DIR + 'server.properties',
     'latestLog': SERVER_DIR + 'logs/latest.log',
-    'serverJar': 'minecraft_server.1.12.2.jar',
+    'serverJar': 'server.jar',
     'javaArgs': '-Xmx4096m',
     'mcArgs': 'nogui',
 }
 
-SCREEN_NAME = "voxel"
+SCREEN_NAME = "minecraft"
 SYMBOL_COMMAND = "!"
+START_SERVER_AT_BOOT = True

@@ -6,6 +6,7 @@ import commands as cmd
 import mcutils
 import subprocess
 
+
 def parse_command(string):
     string = string.replace('\n', '')
     split = string.split(conf.SYMBOL_COMMAND)
@@ -41,8 +42,9 @@ def read_log(current_line):
 
 if __name__ == '__main__':
     try:
-        mcutils.start_server()
-        mcutils.say_minecraft("Python script was started")
+        if conf.START_SERVER_AT_BOOT:
+            mcutils.start_server()
+            mcutils.say_minecraft("Python script was started")
         f = subprocess.Popen(['tail', '-F', '-n', '0', conf.MINECRAFT_SERVER['latestLog']], stdout=subprocess.PIPE,
                              stderr=subprocess.PIPE)
         while True:
