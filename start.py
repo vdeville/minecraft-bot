@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from minecraftTellrawGenerator import MinecraftTellRawGenerator as mctellraw
 import config as conf
 import commands as cmd
 import mcutils
@@ -44,7 +45,20 @@ if __name__ == '__main__':
     try:
         if conf.START_SERVER_AT_BOOT:
             mcutils.start_server()
-            mcutils.say_minecraft("Python script was started")
+
+        mcutils.say_minecraft("Python script was started")
+        mcutils.tellraw_minecraft(mctellraw())
+        mcutils.tellraw_minecraft(mctellraw(
+            text='Minecraft bot, ready !',
+            bold=False,
+            color='yellow'))
+        mcutils.tellraw_minecraft(mctellraw())
+        mcutils.tellraw_minecraft(mctellraw(
+            text='This bot is open source, you can contribute on Github (Click!)',
+            color='gray',
+            url='https://github.com/MyTheValentinus/minecraft-bot',
+            hover=mctellraw(text='Click !', bold=True, color='dark_red')
+        ))
         f = subprocess.Popen(['tail', '-F', '-n', '0', conf.MINECRAFT_SERVER['latestLog']], stdout=subprocess.PIPE,
                              stderr=subprocess.PIPE)
         while True:
